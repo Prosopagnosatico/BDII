@@ -1,0 +1,41 @@
+Create database AtvAvaliativa;
+use AtvAvaliativa;
+
+create table Produto(
+id_prod tinyint auto_increment primary key,
+nome_prod varchar(25) not null,
+quantidade smallint not null
+);
+
+create table Cliente(
+id_cliente tinyint auto_increment primary key,
+nome_cli varchar(100)
+);
+
+create table Nfiscal(
+id_nota tinyint auto_increment primary key,
+valor double not null, 
+data_venda date not null,
+id_prod tinyint, 
+id_cliente tinyint,
+foreign key (id_prod) references Produto(id_prod),
+foreign key (id_cliente) references Cliente(id_cliente) 
+);
+
+alter table Cliente add CPF bigint not null;
+alter table Nfiscal add CPFN varchar(3) not null;
+alter table Produto drop column quantidade;
+
+create table Telefone(
+telefone bigint primary key,
+id_cliente tinyint,
+foreign key (id_cliente) references Cliente(id_cliente)
+);
+
+insert into Produto (nome_prod) values ("Tijolo"), ("Pedra"), ("Cimento"), ("Azulejo"),
+("Janela"), ("Porta"), ("Areia"), ("Telha"), ("Cano"), ("Fio"), ("Tinta"), ("Madeira"),
+("Martelo"), ("Pá"), ("Chave de Fenda"), ("Prego"), ("Tomada"), ("Aditivo"), ("Cal"), 
+("Aço");
+
+select * from Produto;
+
